@@ -37,8 +37,44 @@ los mismos.
 
 # Construccion de modelos
 
-# Funciones para agregar informacion al catalogo
 
+def newCatalog():
+    """
+    Inicializa el catálogo de libros. Crea una lista vacia para guardar
+    todos los libros, adicionalmente, crea una lista vacia para los autores,
+    una lista vacia para los generos y una lista vacia para la asociación
+    generos y libros. Retorna el catalogo inicializado.
+    """
+    catalog = {'artist': None,  #books->artist
+               'artworks': None,}    #authors->artworks
+
+    catalog['artist'] = lt.newList('SINGLE_LINKED')
+    catalog['artworks'] = lt.newList('SINGLE_LINKED')
+
+    return catalog
+# Funciones para agregar informacion al catalogo
+def addArtist(catalog, artist):
+    """
+    Adiciona un artist a la lista de artists
+    """
+    t = (artist['ConstituentID'], artist['DisplayName'], artist['ArtistBio'], #newArtist al inicio si algo 
+    artist['Nationality'], artist['Gender'], artist['BeginDate'], artist['EndDate'], 
+    artist['Wiki QID'], artist['ULAN'])
+    lt.addLast(catalog['artists'], t)
+
+def addArtwork(catalog, artwork):
+    """
+    Adiciona un tag a la lista de tags
+    """
+    t = (artwork['ObjectID'], artwork['Title'], artwork['ConstituentID'], #newArtwork al inicio
+    artwork['Date'], artwork['Medium'], artwork['Dimensions'], 
+    artwork['CreditLine'], artwork['AccessionNumber'], artwork['Classification'], 
+    artwork['Department'], artwork['DateAcquired'], artwork['Cataloged'], 
+    artwork['URL'], artwork['Circumference (cm)'], artwork['Depth (cm)'], 
+    artwork['Diameter (cm)'], artwork['Height (cm)'], artwork['Length (cm)'], 
+    artwork['Weight (kg)'], artwork['Width (cm)'], artwork['Seat Height (cm)'], 
+    artwork['Duration (sec.)'])
+    lt.addLast(catalog['artworks'], t)
 # Funciones para creacion de datos
 
 # Funciones de consulta
