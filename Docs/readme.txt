@@ -43,6 +43,9 @@ model.py: Esta encargado de ejecutar las acciones solicitadas por el usuario.
 Primero se asignan el nombre que tendrá esta, luego se llama a la funcion newList que es la cargada de inicializar la lista vacia. 
 5)	¿Qué hace el parámetro cmpfunction=None en la función newList()?
 
+En algunas ocasiones al ejecutar funciones de organización o búsqueda se debe tener una 
+función que compute la comparación, lo mencionado al último es la función de nuestro 
+parámetro cmpfunction.
 
 6)	¿Qué hace la funció addLast()?
 Agrega a una lista ya existente un elemento en la última posición. 
