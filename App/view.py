@@ -1,4 +1,5 @@
-﻿"""
+﻿#view llama a controller para imp
+"""
  * Copyright 2020, Departamento de sistemas y Computación, Universidad
  * de Los Andes
  *
@@ -64,9 +65,9 @@ while True:
         print("Cargando información de los archivos ....")
         catalog = initCatalog()
         loadData(catalog)
-        print('Artistas cargados: ' + str(lt.size(catalog['artist'])))
+        print('Artistas cargados: ' + str(lt.size(catalog['artists'])))
        #books -> artist 
-        print('Obras cargadas: ' + str(lt.size(catalog['artwork'])))
+        print('Obras cargadas: ' + str(lt.size(catalog['artworks'])))
     #authors->artwork
     elif int(inputs[0]) == 2:
         pass

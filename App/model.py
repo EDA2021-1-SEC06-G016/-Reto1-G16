@@ -1,4 +1,5 @@
-﻿"""
+﻿#lógica gruesa
+"""
  * Copyright 2020, Departamento de sistemas y Computación,
  * Universidad de Los Andes
  *
@@ -45,10 +46,10 @@ def newCatalog():
     una lista vacia para los generos y una lista vacia para la asociación
     generos y libros. Retorna el catalogo inicializado.
     """
-    catalog = {'artist': None,  #books->artist
+    catalog = {'artists': None,  #books->artist
                'artworks': None,}    #authors->artworks
 
-    catalog['artist'] = lt.newList('SINGLE_LINKED')
+    catalog['artists'] = lt.newList('SINGLE_LINKED')
     catalog['artworks'] = lt.newList('SINGLE_LINKED')
 
     return catalog
@@ -82,3 +83,10 @@ def addArtwork(catalog, artwork):
 # Funciones utilizadas para comparar elementos dentro de una lista
 
 # Funciones de ordenamiento
+def implast (catalog):
+    u = lt.size(catalog["artists"])
+    for i in range(u-2, u+1): #revisar rango
+        firstart = lt.getElement(catalog["artists"], i)
+        secart = lt.getElement(catalog["artists"], i)
+        third = lt.getElement(catalog["artists"], i)
+        

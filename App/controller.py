@@ -1,4 +1,5 @@
-﻿"""
+﻿#NO se hacen funciones grandes
+"""
  * Copyright 2020, Departamento de sistemas y Computación,
  * Universidad de Los Andes
  *
@@ -55,7 +56,7 @@ def loadArtists(catalog):
     cada uno de ellos, se crea en la lista de autores, a dicho autor y una
     referencia al libro que se esta procesando.
     """
-    artistsfile = cf.data_dir + 'Artist-utf8-small.csv' #para cambiar el archivo
+    artistsfile = cf.data_dir + 'Artists-utf8-small.csv' #para cambiar el archivo
     input_file = csv.DictReader(open(artistsfile, encoding='utf-8'))
     for artist in input_file:
         model.addArtist(catalog, artist)
