@@ -38,6 +38,7 @@ operación solicitada
 def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo")
+    print("2- Req1 --Orden cronológico de autores por rango de años--")
     print("0- Salir")
 
 def initCatalog():
@@ -55,6 +56,9 @@ def loadData(catalog):
     
 catalog = None
 
+#revisar el input de función printreq1
+def printReq1():
+    size = ###Aquí
 """
 Menu principal
 """
@@ -70,6 +74,10 @@ while True:
         print('Obras cargadas: ' + str(lt.size(catalog['artworks'])))
     #authors->artwork
     elif int(inputs[0]) == 2:
+        startyear = input("Año de inicio de rango a buscar: ")
+        endyear = input("Año final de rango a buscar: ")
+        req1 = controller.getReq1(catalog, int(startyear), int(endyear))
+        printReq1(req1)
         pass
 
     else:

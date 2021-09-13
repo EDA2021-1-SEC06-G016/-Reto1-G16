@@ -48,6 +48,7 @@ def loadData(catalog):
     """
     loadArtists(catalog)
     loadArtworks(catalog)
+    sortArtist(catalog)
     
 
 def loadArtists(catalog):
@@ -75,7 +76,21 @@ def loadArtworks(catalog):
 # Inicialización del Catálogo de libros
 
 # Funciones para la carga de datos
+        
 
 # Funciones de ordenamiento
 
+def sortArtist(catalog):
+        """
+            Ordena artistas crónologicamente por año de nacimiento
+        """
+        model.sortArtist(catalog)
+
 # Funciones de consulta sobre el catálogo
+
+def getReq1 (catalog,startyear , endyear):
+    """
+        Hace lo solicitado en req 1
+    """
+    Req1 = model.getReq1(catalog, startyear, endyear)
+    return Req1###Aquí

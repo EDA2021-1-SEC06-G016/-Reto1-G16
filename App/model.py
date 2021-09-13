@@ -79,14 +79,47 @@ def addArtwork(catalog, artwork):
 # Funciones para creacion de datos
 
 # Funciones de consulta
+###primeras dos funciones son de req 1
+def getLastsartists (catalog):
+    lastsartists = lt.newList()
+    u = lt.size(catalog["artists"])
+    for i in range(u-2, u+1): #revisar rango
+        firstartist = lt.getElement(catalog["artists"], i)
+        secondartist = lt.getElement(catalog["artists"], i)
+        thirdartist = lt.getElement(catalog["artists"], i)
+        lt.addLast(lastsartists, firstartist)
+        lt.addLast(lastsartists, secondartist)
+        lt.addLast(lastsartists, thirdartist)
+    return lastsartists
 
+def getFirstsartists (catalog):
+    firstsartists = lt.newList()
+    #u = lt.size(catalog["artist"])    "No es necesario tener iterador en esta función"
+    for i in range(1,4):
+        firstartist = lt.getElement(catalog["artists"], i)
+        secondartist = lt.getElement(catalog["artists"], i)
+        thirdartist = lt.getElement(catalog["artists"], i)
+        lt.addLast(firstsartists, firstartist)
+        lt.addLast(firstsartists, secondartist)
+        lt.addLast(firstsartists, thirdartist)
+    return firstsartists
+
+def getReq1 (catalog, startyear, endyear): ###falta implementar getFirstartist and getlastartists
+    artists = catalog["artists"]
+    begind = lt.isPresent(artists["BeginDate"], startyear)
+    endd = lt.isPresent(artists["EndDate"], endyear)
+    if (begind > 0) and (endd > 0):
+        #hacer lista con rango ó tener lista momentanea
+        req1list = lt.size(req1lt)
+        #buscar en lista ordenada artistas/// usar for i in range usando de range como primero la start year y de último el endyear
+        ###Aquí
+
+    posartist = lt.isPresent(artists, )
+
+ 
 # Funciones utilizadas para comparar elementos dentro de una lista
 
 # Funciones de ordenamiento
-def implast (catalog):
-    u = lt.size(catalog["artists"])
-    for i in range(u-2, u+1): #revisar rango
-        firstart = lt.getElement(catalog["artists"], i)
-        secart = lt.getElement(catalog["artists"], i)
-        third = lt.getElement(catalog["artists"], i)
-        
+    
+def sortArtists(catalog):
+    sa.sort(catalog["artists"], compareratings)
