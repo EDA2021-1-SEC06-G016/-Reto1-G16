@@ -37,8 +37,13 @@ operación solicitada
 
 def printMenu():
     print("Bienvenido")
-    print("1- Cargar información en el catálogo")
-    print("2- Req1 --Orden cronológico de autores por rango de años--")
+    print("1- Cargar información en el catálogo, en tipo Array_list o Linked_list")
+    print("Pre2/lab4/- GUIAAAA BORRAR, cmpartwork... punto de Lab4, darle a elegir al usuario la muestra y verificar que no exceda lo cargado en memoria")
+    print("2- REQ2/GRUPAL/- Ordenar catalogo de obras por año de adquisición \n /Debe elegir el tipo de algortimo de ordenamiento/")
+    print("3- REQ3/INDIVIDUAL/- Clasificar obras de un artista por tecnica NO SE HA EMPEZADO")
+    print("4- REQ4/INDIVIDUAL/- Clasificar obras por nacionalidad de creadores NO SE HA EMPEZADO")
+    print("5- REQ5/GRUPAL/- Transportar obras de un departamento NO SE HA EMPEZADO")
+    print("6- REQ6/BONO/- Proponer un nueva exposición en el museo NO SE HA EMPEZADO")
     print("0- Salir")
 
 def initCatalog():
@@ -56,9 +61,11 @@ def loadData(catalog):
     
 catalog = None
 
+"""
 #revisar el input de función printreq1
 def printReq1():
     size = ###Aquí
+"""
 """
 Menu principal
 """
@@ -66,19 +73,25 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
-        print("Cargando información de los archivos ....")
-        catalog = initCatalog()
-        loadData(catalog)
-        print('Artistas cargados: ' + str(lt.size(catalog['artists'])))
-       #books -> artist 
-        print('Obras cargadas: ' + str(lt.size(catalog['artworks'])))
-    #authors->artwork
-    elif int(inputs[0]) == 2:
-        startyear = input("Año de inicio de rango a buscar: ")
-        endyear = input("Año final de rango a buscar: ")
-        req1 = controller.getReq1(catalog, int(startyear), int(endyear))
-        printReq1(req1)
+        typelist = input("Indique el tipo de lista para cargar los datos/ARRAY_LIST;SINGLE_LINKED/: ")
+        if typelist == "SINGLE_LINKED" or "ARRAY_LIST":
+            print("Cargando información de los archivos ....")
+            catalog = controller.initCatalog(typelist)
+            loadData(catalog)
+            print('Artistas cargados: ' + str(lt.size(catalog['artists'])))
+            #books -> artist 
+            print('Obras cargadas: ' + str(lt.size(catalog['artworks'])))
+            #authors->artwork
+        else:
+            print("No ha ingresado una opción válida, por favor ingrese una opción válida")
         pass
+    #Para REQ1 de Reto1
+    #elif int(inputs[0]) == 2:
+    #    startyear = input("Año de inicio de rango a buscar: ")
+    #    endyear = input("Año final de rango a buscar: ")
+    #    req1 = controller.getReq1(catalog, int(startyear), int(endyear))
+    #    printReq1(req1)
+    #    pass
 
     else:
         sys.exit(0)

@@ -30,11 +30,11 @@ import csv
 El controlador se encarga de mediar entre la vista y el modelo.
 """
 #inicio copia
-def initCatalog():
+def initCatalog(typelist):
     """
     Llama la funcion de inicializacion del catalogo del modelo.
     """
-    catalog = model.newCatalog()
+    catalog = model.newCatalog(typelist)
     return catalog
 
 
@@ -88,9 +88,10 @@ def sortArtist(catalog):
 
 # Funciones de consulta sobre el catálogo
 
-def getReq1 (catalog,startyear , endyear):
-    """
-        Hace lo solicitado en req 1
-    """
-    Req1 = model.getReq1(catalog, startyear, endyear)
-    return Req1###Aquí
+#Para REQ1 de Reto1
+#def getReq1 (catalog,startyear , endyear):
+#    """
+#        Hace lo solicitado en req 1
+#    """
+#    Req1 = model.getReq1(catalog, startyear, endyear)
+#    return Req1###Aquí

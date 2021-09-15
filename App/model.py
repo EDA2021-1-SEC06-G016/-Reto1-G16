@@ -39,7 +39,13 @@ los mismos.
 # Construccion de modelos
 
 
-def newCatalog():
+def newCatalog(typelist):
+#REVISAR PORQUE NEWCATALOG NO PUEDE TENER PARAMETROS
+    type = ""
+    if typelist == "SINGLE_LINKED":
+        type = "SINGLE_LINKED"
+    elif typelist == "ARRAY_LIST":
+        type = "ARRAY_LIST"
     """
     Inicializa el catálogo de libros. Crea una lista vacia para guardar
     todos los libros, adicionalmente, crea una lista vacia para los autores,
@@ -49,11 +55,12 @@ def newCatalog():
     catalog = {'artists': None,  #books->artist
                'artworks': None,}    #authors->artworks
 
-    catalog['artists'] = lt.newList('SINGLE_LINKED')
-    catalog['artworks'] = lt.newList('SINGLE_LINKED')
+    catalog['artists'] = lt.newList(type)
+    catalog['artworks'] = lt.newList(type)
 
     return catalog
 # Funciones para agregar informacion al catalogo
+
 def addArtist(catalog, artist):
     """
     Adiciona un artist a la lista de artists
@@ -79,7 +86,7 @@ def addArtwork(catalog, artwork):
 # Funciones para creacion de datos
 
 # Funciones de consulta
-###primeras dos funciones son de req 1
+###primeras dos funciones de REQ1 de Reto1
 def getLastsartists (catalog):
     lastsartists = lt.newList()
     u = lt.size(catalog["artists"])
@@ -104,17 +111,18 @@ def getFirstsartists (catalog):
         lt.addLast(firstsartists, thirdartist)
     return firstsartists
 
-def getReq1 (catalog, startyear, endyear): ###falta implementar getFirstartist and getlastartists
-    artists = catalog["artists"]
-    begind = lt.isPresent(artists["BeginDate"], startyear)
-    endd = lt.isPresent(artists["EndDate"], endyear)
-    if (begind > 0) and (endd > 0):
-        #hacer lista con rango ó tener lista momentanea
-        req1list = lt.size(req1lt)
+#Para REQ1 de Reto1
+#def getReq1 (catalog, startyear, endyear): ###falta implementar getFirstartist and getlastartists
+#    artists = catalog["artists"]
+#    begind = lt.isPresent(artists["BeginDate"], startyear)
+#    endd = lt.isPresent(artists["EndDate"], endyear)
+#    if (begind > 0) and (endd > 0):
+#        #hacer lista con rango ó tener lista momentanea
+#        req1list = lt.size(req1lt)
         #buscar en lista ordenada artistas/// usar for i in range usando de range como primero la start year y de último el endyear
         ###Aquí
 
-    posartist = lt.isPresent(artists, )
+#    posartist = lt.isPresent(artists, )
 
  
 # Funciones utilizadas para comparar elementos dentro de una lista
@@ -122,4 +130,4 @@ def getReq1 (catalog, startyear, endyear): ###falta implementar getFirstartist a
 # Funciones de ordenamiento
     
 def sortArtists(catalog):
-    sa.sort(catalog["artists"], compareratings)
+    sa.sort(catalog["artists"])
