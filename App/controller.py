@@ -34,7 +34,7 @@ def initCatalog(typelist):
     """
     Llama la funcion de inicializacion del catalogo del modelo.
     """
-    catalog = model.newCatalog(typelist)
+    catalog = model.newCatalog() #Va "typelist" como parametro
     return catalog
 
 

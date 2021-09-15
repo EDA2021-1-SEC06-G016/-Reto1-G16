@@ -73,18 +73,30 @@ while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
-        typelist = input("Indique el tipo de lista para cargar los datos/ARRAY_LIST;SINGLE_LINKED/: ")
-        if typelist == "SINGLE_LINKED" or "ARRAY_LIST":
-            print("Cargando información de los archivos ....")
-            catalog = controller.initCatalog(typelist)
-            loadData(catalog)
-            print('Artistas cargados: ' + str(lt.size(catalog['artists'])))
+
+        #typelist = input("Indique el tipo de lista para cargar los datos/ARRAY_LIST;SINGLE_LINKED/: ")
+        #if typelist == "SINGLE_LINKED" or "ARRAY_LIST":
+        #    print("Cargando información de los archivos ....")
+        #    catalog = controller.initCatalog(typelist)   
+        #    loadData(catalog)
+        #    print('Artistas cargados: ' + str(lt.size(catalog['artists'])))
             #books -> artist 
-            print('Obras cargadas: ' + str(lt.size(catalog['artworks'])))
+        #    print('Obras cargadas: ' + str(lt.size(catalog['artworks'])))
             #authors->artwork
-        else:
-            print("No ha ingresado una opción válida, por favor ingrese una opción válida")
-        pass
+        #else:
+        #    print("No ha ingresado una opción válida, por favor ingrese una opción válida")
+        #pass
+
+        #Código original para dar funcionamiento por defecto con "SINGLE_LINKED"
+        print("Cargando información de los archivos ....")
+        catalog = initCatalog()
+        loadData(catalog)
+        print('Artistas cargados: ' + str(lt.size(catalog['artists'])))
+       #books -> artist 
+        print('Obras cargadas: ' + str(lt.size(catalog['artworks'])))
+       #authors->artwork
+        #Código original para cargar archivos termina
+
     #Para REQ1 de Reto1
     #elif int(inputs[0]) == 2:
     #    startyear = input("Año de inicio de rango a buscar: ")

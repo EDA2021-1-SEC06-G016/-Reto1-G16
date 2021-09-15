@@ -39,13 +39,13 @@ los mismos.
 # Construccion de modelos
 
 
-def newCatalog(typelist):
+def newCatalog(): #Va "typelist" como parametro
 #REVISAR PORQUE NEWCATALOG NO PUEDE TENER PARAMETROS
-    type = ""
-    if typelist == "SINGLE_LINKED":
-        type = "SINGLE_LINKED"
-    elif typelist == "ARRAY_LIST":
-        type = "ARRAY_LIST"
+    #type = ""
+    #if typelist == "SINGLE_LINKED":
+    #    type = "SINGLE_LINKED"
+    #elif typelist == "ARRAY_LIST":
+    #    type = "ARRAY_LIST"
     """
     Inicializa el catálogo de libros. Crea una lista vacia para guardar
     todos los libros, adicionalmente, crea una lista vacia para los autores,
@@ -55,8 +55,8 @@ def newCatalog(typelist):
     catalog = {'artists': None,  #books->artist
                'artworks': None,}    #authors->artworks
 
-    catalog['artists'] = lt.newList(type)
-    catalog['artworks'] = lt.newList(type)
+    catalog['artists'] = lt.newList("SINGLE_LINKED") #USANDO "type" con el código comentado en vez del tipo de lista
+    catalog['artworks'] = lt.newList("SINGLE_LINKED")
 
     return catalog
 # Funciones para agregar informacion al catalogo
