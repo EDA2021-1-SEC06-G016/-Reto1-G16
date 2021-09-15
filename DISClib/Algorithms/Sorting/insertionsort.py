@@ -36,7 +36,7 @@ assert config
 """
 
 
-def sort(lst, cmpfunction):
+def insertionsort(lst, cmpfunction):
     size = lt.size(lst)
     pos1 = 1
     while pos1 <= size:

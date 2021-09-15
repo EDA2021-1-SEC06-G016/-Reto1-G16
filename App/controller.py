@@ -30,7 +30,7 @@ import csv
 El controlador se encarga de mediar entre la vista y el modelo.
 """
 #inicio copia
-def initCatalog(typelist):
+def initCatalog():  #Va "typelist" como parametro
     """
     Llama la funcion de inicializacion del catalogo del modelo.
     """
@@ -80,11 +80,11 @@ def loadArtworks(catalog):
 
 # Funciones de ordenamiento
 
-def sortArtist(catalog):
+def sortArtist(catalog, size):
         """
             Ordena artistas crónologicamente por año de nacimiento
         """
-        model.sortArtist(catalog)
+        model.sortArtists(catalog, size)
 
 # Funciones de consulta sobre el catálogo
 

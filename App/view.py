@@ -97,7 +97,7 @@ while True:
        #authors->artwork
         #Código original para cargar archivos termina
 
-    #Para REQ1 de Reto1
+    #Para REQ1 de Reto1 /para obviar/
     #elif int(inputs[0]) == 2:
     #    startyear = input("Año de inicio de rango a buscar: ")
     #    endyear = input("Año final de rango a buscar: ")

@@ -26,6 +26,9 @@
  """
 
 
+from os import times
+from typing import Awaitable
+from Test.sorting.test_shell_linked import cmpfunction
 import config as cf
 from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
@@ -101,7 +104,6 @@ def getLastsartists (catalog):
 
 def getFirstsartists (catalog):
     firstsartists = lt.newList()
-    #u = lt.size(catalog["artist"])    "No es necesario tener iterador en esta función"
     for i in range(1,4):
         firstartist = lt.getElement(catalog["artists"], i)
         secondartist = lt.getElement(catalog["artists"], i)
@@ -110,7 +112,7 @@ def getFirstsartists (catalog):
         lt.addLast(firstsartists, secondartist)
         lt.addLast(firstsartists, thirdartist)
     return firstsartists
-
+"""
 #Para REQ1 de Reto1
 #def getReq1 (catalog, startyear, endyear): ###falta implementar getFirstartist and getlastartists
 #    artists = catalog["artists"]
@@ -124,10 +126,47 @@ def getFirstsartists (catalog):
 
 #    posartist = lt.isPresent(artists, )
 
- 
+"""
 # Funciones utilizadas para comparar elementos dentro de una lista
 
 # Funciones de ordenamiento
+
+def cmpArtworkByDateAcquired (catalog, artwork, artwork1, artwork2):
+    artwork= catalog["artworks"]
+    presart1 = lt.isPresent(catalog['artworks'], artwork1)
+    presart2 = lt.isPresent(catalog['artworks'], artwork2)
+    if ((presart1 > 0) and (presart2 > 0)):
+        date1 = lt.isPresent(artwork["DateAcquired"], artwork1)
+        date2 = lt.isPresent(artwork["DateAcquired"], artwork2)
+        if date1 < date2:
+            return True
+        else:
+            return False
+    else:
+        print("Alguna de las obras dadas no se encuentra en la base de datos\n verifique los datos ingresados")
+    pass
+        ###Últimos cambios para ordenamiento de comparación
+#FUNCIONES PARA COMPARAR DENTRO DE UNA LISTA
+def comparedates(artwork1, artwork2):
+
+    return (float(artwork1['DateAcquired']) < float(artwork2['DateAcquired']))
+
+###Dar a elegir el ordenamiento al usuario
+def typeord (catalog, ord, size):
+    if lt.size(catalog["artists"]) >= size :
+        sub_list = lt.subList(catalog['artist'], 1, size)
+    sub_list = sub_list.copy()
     
-def sortArtists(catalog):
-    sa.sort(catalog["artists"])
+    if ord == "Insertion":
+        InsSub= lt.insertionsort()
+        
+    elif ord == "Shell":
+        ñ
+    elif ord == "Merge":
+        ñ
+    elif ord == "QuickSorts":
+        ñ
+    
+    else:
+        print("No ha seleccionado un tipo de ordenamiento válido, porfavor intentelo de nuevo")
+
