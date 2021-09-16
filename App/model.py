@@ -42,7 +42,7 @@ los mismos.
 # Construccion de modelos
 
 
-def newCatalog(): #Va "typelist" como parametro
+def newCatalog(typelist): #Va "typelist" como parametro
 #REVISAR PORQUE NEWCATALOG NO PUEDE TENER PARAMETROS
     #type = ""
     #if typelist == "SINGLE_LINKED":
@@ -58,8 +58,8 @@ def newCatalog(): #Va "typelist" como parametro
     catalog = {'artists': None,  #books->artist
                'artworks': None,}    #authors->artworks
 
-    catalog['artists'] = lt.newList("SINGLE_LINKED") #USANDO "type" con el código comentado en vez del tipo de lista
-    catalog['artworks'] = lt.newList("SINGLE_LINKED")
+    catalog['artists'] = lt.newList(typelist) #USANDO "type" con el código comentado en vez del tipo de lista
+    catalog['artworks'] = lt.newList(typelist)
 
     return catalog
 # Funciones para agregar informacion al catalogo
@@ -147,26 +147,47 @@ def cmpArtworkByDateAcquired (catalog, artwork, artwork1, artwork2):
     pass
         ###Últimos cambios para ordenamiento de comparación
 #FUNCIONES PARA COMPARAR DENTRO DE UNA LISTA
+
+def insertionSort(catalog):
+    X = int(lt.size(catalog["artworks"]))
+    for i in range(1, X):
+        key = catalog["artworks"][i]
+  
+        j = i-1
+        while j >=0 and comparedates(key, catalog["artworks"][j]):
+                catalog["artworks"][j+1] = catalog["artworks"][j]
+                j -= 1
+        catalog["artworks"][j+1] = key
+
+def shellSort(catalog):
+  
+    n = int(len(catalog))
+    gap = int(n/2)
+  
+    while gap > 0:
+        for i in range(int(gap),int(n)):
+            temp = catalog[i]
+            j = i
+            while  j >= gap and catalog[j-gap]['DateAcquired'] >temp['DateAcquired']:
+                catalog[j] = catalog[j-gap]
+                j -= gap
+            catalog[j] = temp
+        gap /= 2
+
 def comparedates(artwork1, artwork2):
 
     return (float(artwork1['DateAcquired']) < float(artwork2['DateAcquired']))
 
 ###Dar a elegir el ordenamiento al usuario
-def typeord (catalog, ord, size):
-    if lt.size(catalog["artists"]) >= size :
-        sub_list = lt.subList(catalog['artist'], 1, size)
-    sub_list = sub_list.copy()
-    
+def typeord (catalog, ord):
+
     if ord == "Insertion":
-        InsSub= lt.insertionsort()
-        
+        insertionSort(catalog)
     elif ord == "Shell":
-        ñ
+        shellSort(catalog)
     elif ord == "Merge":
-        ñ
-    elif ord == "QuickSorts":
-        ñ
-    
+        print("")
+    elif ord == "QuickSort":
+        print("")
     else:
         print("No ha seleccionado un tipo de ordenamiento válido, porfavor intentelo de nuevo")
-
