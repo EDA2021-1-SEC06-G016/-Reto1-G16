@@ -42,24 +42,26 @@ los mismos.
 # Construccion de modelos
 
 
-def newCatalog(typelist): #Va "typelist" como parametro
+#def newCatalog(typelist): #Va "typelist" como parametro
 #REVISAR PORQUE NEWCATALOG NO PUEDE TENER PARAMETROS
     #type = ""
     #if typelist == "SINGLE_LINKED":
     #    type = "SINGLE_LINKED"
     #elif typelist == "ARRAY_LIST":
     #    type = "ARRAY_LIST"
-    """
+"""
     Inicializa el catálogo de libros. Crea una lista vacia para guardar
     todos los libros, adicionalmente, crea una lista vacia para los autores,
     una lista vacia para los generos y una lista vacia para la asociación
     generos y libros. Retorna el catalogo inicializado.
-    """
+"""
+    
+def newCatalog():
     catalog = {'artists': None,  #books->artist
                'artworks': None,}    #authors->artworks
 
-    catalog['artists'] = lt.newList(typelist) #USANDO "type" con el código comentado en vez del tipo de lista
-    catalog['artworks'] = lt.newList(typelist)
+    catalog['artists'] = lt.newList("SINGLE_LINKED") #USANDO "type" con el código comentado en vez del tipo de lista
+    catalog['artworks'] = lt.newList("SINGLE_LINKED") # Para dar a selecionar al usuario a elegir el tipo de lista se usa el "typelist" con lo comentado
 
     return catalog
 # Funciones para agregar informacion al catalogo

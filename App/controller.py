@@ -21,6 +21,7 @@
  * along withthis program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
+from DISClib.ADT.list import size
 import config as cf
 import model
 import csv
@@ -48,7 +49,7 @@ def loadData(catalog):
     """
     loadArtists(catalog)
     loadArtworks(catalog)
-    sortArtist(catalog)
+    #sortArtist(catalog, size)
     
 
 def loadArtists(catalog):

@@ -38,12 +38,12 @@ operación solicitada
 def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo, en tipo Array_list o Linked_list")
-    print("Pre2/lab4/- GUIAAAA BORRAR, cmpartwork... punto de Lab4, darle a elegir al usuario la muestra y verificar que no exceda lo cargado en memoria")
-    print("2- REQ2/GRUPAL/- Ordenar catalogo de obras por año de adquisición \n /Debe elegir el tipo de algortimo de ordenamiento/")
-    print("3- REQ3/INDIVIDUAL/- Clasificar obras de un artista por tecnica NO SE HA EMPEZADO")
-    print("4- REQ4/INDIVIDUAL/- Clasificar obras por nacionalidad de creadores NO SE HA EMPEZADO")
-    print("5- REQ5/GRUPAL/- Transportar obras de un departamento NO SE HA EMPEZADO")
-    print("6- REQ6/BONO/- Proponer un nueva exposición en el museo NO SE HA EMPEZADO")
+    print("2- REQ1 Listar cronológicamente los artistas")
+    print("ant2 3real- REQ2/GRUPAL/- Ordenar catalogo de obras por año de adquisición")
+    print("ant3 4real- REQ3/INDIVIDUAL/- Clasificar obras de un artista por tecnica NO SE HA EMPEZADO")
+    print("ant4 5real- REQ4/INDIVIDUAL/- Clasificar obras por nacionalidad de creadores NO SE HA EMPEZADO")
+    print("ant5 6real- REQ5/GRUPAL/- Transportar obras de un departamento NO SE HA EMPEZADO")
+    print("ant6 7real- REQ6/BONO/- Proponer un nueva exposición en el museo NO SE HA EMPEZADO")
     print("0- Salir")
 
 def initCatalog():
