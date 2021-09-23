@@ -141,7 +141,7 @@ def printDepartamet(departament, artworks):
             top = top + 1
             print("El total de obras a transporta es:" + str(top)) 
     print(top)
-    
+
 #Drawings & Prints
 def convertValue(text):
     text1 = text.replace("x","/")
@@ -160,6 +160,252 @@ def count(catalog):
         if item not in result:
             result.append(item)
     return len(result)
+
+# Funciones utilizadas para comparar elementos dentro de una lista
+
+# Funciones de ordenamiento
+
+def cmpArtworkByDateAcquired (catalog, artwork, artwork1, artwork2):
+    artwork= catalog["artworks"]
+    presart1 = lt.isPresent(catalog['artworks'], artwork1)
+    presart2 = lt.isPresent(catalog['artworks'], artwork2)
+    if ((presart1 > 0) and (presart2 > 0)):
+        date1 = lt.isPresent(artwork["DateAcquired"], artwork1)
+        date2 = lt.isPresent(artwork["DateAcquired"], artwork2)
+        if date1 < date2:
+            return True
+        else:
+            return False
+    else:
+        print("Alguna de las obras dadas no se encuentra en la base de datos\n verifique los datos ingresados")
+    pass
+        ###Últimos cambios para ordenamiento de comparación
+#FUNCIONES PARA COMPARAR DENTRO DE UNA LISTA
+
+def insertionSort(catalog):
+    X = int(lt.size(catalog["artworks"]))
+    for i in range(1, X):
+        key = catalog["artworks"][i]
+  
+        j = i-1
+        while j >=0 and comparedates(key, catalog["artworks"][j]):
+                catalog["artworks"][j+1] = catalog["artworks"][j]
+                j -= 1
+        catalog["artworks"][j+1] = key
+
+def shellSort(catalog):
+  
+    n = int(len(catalog))
+    gap = int(n/2)
+  
+    while gap > 0:
+        for i in range(int(gap),int(n)):
+            temp = catalog[i]
+            j = i
+            while  j >= gap and catalog[j-gap]['DateAcquired'] >temp['DateAcquired']:
+                catalog[j] = catalog[j-gap]
+                j -= gap
+            catalog[j] = temp
+        gap /= 2
+
+def comparedates(artwork1, artwork2):
+
+    return (float(artwork1['DateAcquired']) < float(artwork2['DateAcquired']))
+
+###Dar a elegir el ordenamiento al usuario
+def typeord (catalog, ord):
+
+    if ord == "Insertion":
+        insertionSort(catalog)
+    elif ord == "Shell":
+        shellSort(catalog)
+    elif ord == "Merge":
+        print("")
+    elif ord == "QuickSort":
+        print("")
+    else:
+        print("No ha seleccionado un tipo de ordenamiento válido, porfavor intentelo de nuevo")
+def ordgetReq2 (catalog, cmpfunction): #Ordenar por DateAcquired
+    req1cat = catalog["artist"]
+    size = lt.size(req1cat)
+    if size > 1:
+        mid = (size // 2)
+        """se divide la lista original, en dos partes, izquierda y derecha,
+        desde el punto mid."""
+        leftlist = lt.subList(req1cat, 1, mid)
+        rightlist = lt.subList(req1cat, mid+1, size - mid)
+
+        """se hace el llamado recursivo con la lista izquierda y derecha"""
+        ordgetReq2(leftlist, cmpfunction)
+        ordgetReq2(rightlist, cmpfunction)
+
+        """i recorre la lista izquierda, j la derecha y k la lista original"""
+        i = j = k = 1
+
+        leftelements = lt.size(leftlist)
+        rightelements = lt.size(rightlist)
+
+        while (i <= leftelements) and (j <= rightelements):
+            elemi = lt.getElement(leftlist["BeginDate"], i)
+            elemj = lt.getElement(rightlist["BeginDate"], j)
+            """compara y ordena los elementos"""
+            if cmpfunction(elemj, elemi):   # caso estricto elemj < elemi
+                lt.changeInfo(req1cat, k, elemj)
+                j += 1
+            else:                            # caso elemi <= elemj
+                lt.changeInfo(req1cat, k, elemi)
+                i += 1
+            k += 1
+
+        """Agrega los elementos que no se comprararon y estan ordenados"""
+        while i <= leftelements:
+            lt.changeInfo(req1cat, k, lt.getElement(leftlist, i))
+            i += 1
+            k += 1
+
+        while j <= rightelements:
+            lt.changeInfo(req1cat, k, lt.getElement(rightlist, j))
+            j += 1
+            k += 1
+    return req1cat
+
+def getReq1size (req1cat, startyear, endyear): #Cantidad de obras de range
+    i = 0
+    date1 = datetime.date(startyear)
+    date2 = datetime.date(endyear)
+    pos1 = lt.isPresent(req1cat, startdate)
+    pos2 = lt.isPresent(req1cat, enddate)
+    elem = pos2 - pos1
+    if pos1 > 0:
+        if pos2 > 0:
+            rangecat = lt.subList(req2cat, req2cat[pos1], elem)
+        else:
+            print("No se ha seleccionado una fecha de final válida")
+    else:
+        print("No se ha seleccionado una fecha de inicio válida")
+    rangesize = lt.size(rangecat)
+    return rangesize
+
+###Funciones REQ2 de Reto1
+
+def ordgetReq2 (catalog, cmpfunction): #Ordenar por DateAcquired
+    req2cat = catalog["artworks"]
+    size = lt.size(req2cat)
+    if size > 1:
+        mid = (size // 2)
+        """se divide la lista original, en dos partes, izquierda y derecha,
+        desde el punto mid."""
+        leftlist = lt.subList(req2cat, 1, mid)
+        rightlist = lt.subList(req2cat, mid+1, size - mid)
+
+        """se hace el llamado recursivo con la lista izquierda y derecha"""
+        ordgetReq2(leftlist, cmpfunction)
+        ordgetReq2(rightlist, cmpfunction)
+
+        """i recorre la lista izquierda, j la derecha y k la lista original"""
+        i = j = k = 1
+
+        leftelements = lt.size(leftlist)
+        rightelements = lt.size(rightlist)
+
+        while (i <= leftelements) and (j <= rightelements):
+            elemi = lt.getElement(leftlist["DateAcquired"], i)
+            elemj = lt.getElement(rightlist["DateAcquired"], j)
+            """compara y ordena los elementos"""
+            if cmpfunction(elemj, elemi):   # caso estricto elemj < elemi
+                lt.changeInfo(req2cat, k, elemj)
+                j += 1
+            else:                            # caso elemi <= elemj
+                lt.changeInfo(req2cat, k, elemi)
+                i += 1
+            k += 1
+
+        """Agrega los elementos que no se comprararon y estan ordenados"""
+        while i <= leftelements:
+            lt.changeInfo(req2cat, k, lt.getElement(leftlist, i))
+            i += 1
+            k += 1
+
+        while j <= rightelements:
+            lt.changeInfo(req2cat, k, lt.getElement(rightlist, j))
+            j += 1
+            k += 1
+    return req2cat
+
+def getReq2size (req2cat, startdate, enddate): #Cantidad de obras de range
+    #En caso de tener que pasar las fechas del catalogo por datetime.date
+    #x = startdate.split("-")
+    #y = enddate.split("-")
+    #startd = (int(x[0]),int(x[1]),int(x[2]))
+    #endd = (int(y[0]),int(y[1]),int(y[2]))
+    #date1 = datetime.date(startd)
+    #date2 = datetime.date(endd)
+    pos1 = lt.isPresent(req2cat, startdate)
+    pos2 = lt.isPresent(req2cat, enddate)
+    elem = pos2 - pos1
+    if pos1 > 0:
+        if pos2 > 0:
+            rangecat = lt.subList(req2cat, req2cat[pos1], elem)
+        else:
+            print("No se ha seleccionado una fecha de final válida")
+    else:
+        print("No se ha seleccionado una fecha de inicio válida")
+    rangesize = lt.size(rangecat)
+    return rangesize
+
+def getLastsartwork (rangecat): #Últimas 3
+    lastsartworks = lt.newList()
+    u = lt.size(rangecat["artwork"])
+    for i in range(u-2, u+1): #revisar rango
+        firstartwork = lt.getElement(rangecat["artwork"], i)
+        secondartwork = lt.getElement(rangecat["artwork"], i)
+        thirdartwork = lt.getElement(rangecat["artwork"], i)
+        lt.addLast(lastsartworks, firstartwork)
+        lt.addLast(lastsartworks, secondartwork)
+        lt.addLast(lastsartworks, thirdartwork)
+    return lastsartworks
+
+def getFirstsartworks (rangecat): #Primeras 3 
+    firstsartworks = lt.newList()
+    for i in range(1,4):
+        firstartwork = lt.getElement(rangecat["artwork"], i)
+        secondartwork = lt.getElement(rangecat["artwork"], i)
+        thirdartwork = lt.getElement(rangecat["artwork"], i)
+        lt.addLast(firstsartworks, firstartwork)
+        lt.addLast(firstsartworks, secondartwork)
+        lt.addLast(firstsartworks, thirdartwork)
+    return firstsartworks
+
+def getReq2purchase (rangecat, rangesize): #Tamaño de obras por "Purchase"
+    partworks = lt.newList()
+    i = 0
+    while i < rangesize:
+        if rangecat[i]["CreditLine"] == "Purchase":
+            lt.addLast(partworks, rangecat[i])
+        i +=1
+    psize = lt.size(partworks)
+    return psize
+
+    return None
+# REQ 3
+def getReq3Artwart (catalog, name):
+    i = 0
+    artists = catalog["artist"]
+    size = lt.size(catalog["artist"])
+    artwart = lt.newList()
+    #if lt.isPresent(catalog["artist"], name) == True:
+        while i < size:
+            if (artists[i]["DisplayName"]) == name:
+                if lt.isPresent( artwart,artists[i]["DisplayName"]) == True:
+                    artwart[name]
+            i+=1
+
+    pass
+
+
+def getReq3Artwtec (catalog, name):
+    
+    return None
 
 # Funciones utilizadas para comparar elementos dentro de una lista
 

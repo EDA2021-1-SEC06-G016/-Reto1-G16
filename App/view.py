@@ -86,6 +86,25 @@ while True:
         #books -> artist 
         print('Obras cargadas: ' + str(lt.size(catalog['artworks'])))
         #authors->artwork
+    elif int(inputs[0]) == 2:
+        startyear = input("Año de inicio de rango a buscar: ")
+        endyear = input("Año final de rango a buscar: ")
+        req1 = controller.getReq1(catalog, startyear, endyear)
+        printReq1(req1)
+
+    #Para REQ2 
+    elif int(inputs[0]) == 3:
+        catalog = initCatalog()
+        loadData(catalog)
+        startdate = str(input("Fecha de inicio en rango a buscar en formato /AAAA-MM-DD: "))
+        enddate = str(input("Fecha de final en rango a buscar en formato /AAAA-MM-DD: "))
+        sizerange = lt.size(controller.artworksrange) #Usar artworksrange para los números
+        print("Número de obras en el rango: " + str(sizerange))
+        sizepurchase = lt.size(controller.artworksrangepurchase) #Usar artworksrangepurchase para obras por compra
+        print("Números de obras por compra /purchase/: " + str(sizepurchase)) 
+        print("Primeros y últimas 3 obras del rango escojido... ")
+        req2 = controller.getReq2(catalog, startdate, enddate)
+        print(req2)
 
     elif int(inputs[0]) == 4:
         inputArtist = input('Ingrese un artista: ')
@@ -105,3 +124,5 @@ while True:
     else:
         sys.exit(0)
 sys.exit(0)
+
+    

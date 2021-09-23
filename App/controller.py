@@ -93,7 +93,32 @@ def sortArtist(catalog, size):
         """
         model.sortArtists(catalog, size)
 
-        
+def getReq1 (catalog, startyear , endyear):
+#    """
+#        Hace lo solicitado en req 1
+#    """
+   Req1 = model.getReq1(catalog, startyear, endyear)
+   return Req1###Aquí
+
+#REQ2
+def getReq2 (catalog, startdate, enddate):
+    req2 = model.getReq2(catalog, startdate, enddate)
+    return req2
+
+#REQ3
+
+def artworksartist (catalog):
+    artworksart = model.getReq3Artwart(catalog)
+    return artworksart
+
+def tecnicsartist (catalog):
+    tecnics = model.getReq3Tecnicsart(catalog)
+    return tecnics
+
+def artworkstecnic (catalog):
+    artworkstec = model.getReq3Artwtec(catalog)
+    return artworkstec
+
 
 
 # Funciones de consulta sobre el catálogo
