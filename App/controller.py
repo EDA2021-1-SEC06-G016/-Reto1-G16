@@ -31,11 +31,11 @@ import csv
 El controlador se encarga de mediar entre la vista y el modelo.
 """
 #inicio copia
-def initCatalog():  #Va "typelist" como parametro
+def initCatalog(typelist):  #Va "typelist" como parametro
     """
     Llama la funcion de inicializacion del catalogo del modelo.
     """
-    catalog = model.newCatalog() #Va "typelist" como parametro
+    catalog = model.newCatalog(typelist) #Va "typelist" como parametro
     return catalog
 
 
@@ -73,6 +73,12 @@ def loadArtworks(catalog):
     input_file = csv.DictReader(open(artworksfile, encoding='utf-8'))
     for artwork in input_file:
         model.addArtwork(catalog, artwork)
+
+def printTecnics(inputArtist,artworks,constituentID):
+    model.printTecnics(inputArtist,artworks,constituentID)
+
+def printDepartamet(departament, artworks):
+    model.printDepartamet(departament, artworks)
 #final copia
 # Inicialización del Catálogo de libros
 
@@ -86,6 +92,9 @@ def sortArtist(catalog, size):
             Ordena artistas crónologicamente por año de nacimiento
         """
         model.sortArtists(catalog, size)
+
+        
+
 
 # Funciones de consulta sobre el catálogo
 

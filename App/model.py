@@ -26,29 +26,15 @@
  """
 
 
-from os import times
+from os import error, times
 from typing import Awaitable
 from Test.sorting.test_shell_linked import cmpfunction
 import config as cf
 from DISClib.ADT import list as lt
 from DISClib.Algorithms.Sorting import shellsort as sa
 assert cf
+from statistics import mode
 
-"""
-Se define la estructura de un catálogo de videos. El catálogo tendrá dos listas, una para los videos, otra para las categorias de
-los mismos.
-"""
-
-# Construccion de modelos
-
-
-#def newCatalog(typelist): #Va "typelist" como parametro
-#REVISAR PORQUE NEWCATALOG NO PUEDE TENER PARAMETROS
-    #type = ""
-    #if typelist == "SINGLE_LINKED":
-    #    type = "SINGLE_LINKED"
-    #elif typelist == "ARRAY_LIST":
-    #    type = "ARRAY_LIST"
 """
     Inicializa el catálogo de libros. Crea una lista vacia para guardar
     todos los libros, adicionalmente, crea una lista vacia para los autores,
@@ -56,13 +42,12 @@ los mismos.
     generos y libros. Retorna el catalogo inicializado.
 """
     
-def newCatalog():
+def newCatalog(typelist):
     catalog = {'artists': None,  #books->artist
                'artworks': None,}    #authors->artworks
 
-    catalog['artists'] = lt.newList("SINGLE_LINKED") #USANDO "type" con el código comentado en vez del tipo de lista
-    catalog['artworks'] = lt.newList("SINGLE_LINKED") # Para dar a selecionar al usuario a elegir el tipo de lista se usa el "typelist" con lo comentado
-
+    catalog['artists'] = lt.newList(typelist) #USANDO "type" con el código comentado en vez del tipo de lista
+    catalog['artworks'] = lt.newList(typelist)
     return catalog
 # Funciones para agregar informacion al catalogo
 
@@ -114,21 +99,68 @@ def getFirstsartists (catalog):
         lt.addLast(firstsartists, secondartist)
         lt.addLast(firstsartists, thirdartist)
     return firstsartists
-"""
-#Para REQ1 de Reto1
-#def getReq1 (catalog, startyear, endyear): ###falta implementar getFirstartist and getlastartists
-#    artists = catalog["artists"]
-#    begind = lt.isPresent(artists["BeginDate"], startyear)
-#    endd = lt.isPresent(artists["EndDate"], endyear)
-#    if (begind > 0) and (endd > 0):
-#        #hacer lista con rango ó tener lista momentanea
-#        req1list = lt.size(req1lt)
-        #buscar en lista ordenada artistas/// usar for i in range usando de range como primero la start year y de último el endyear
-        ###Aquí
 
-#    posartist = lt.isPresent(artists, )
+def printTecnics(inputArtist,artworks,constituentID):
+    filtered_artworks = lt.newList()
+    mediums_tecnics = []
+    for artwork in lt.iterator(artworks):
+        remplaced1 = artwork[2].replace("[","")
+        remplaced2 = remplaced1.replace("]","")
+        ids = remplaced2.split(sep=',')
+        for id in ids:
+            if(str(id) == str(constituentID)):
+                lt.addLast(filtered_artworks,artwork)
+                mediums_tecnics.append(artwork[4])
+    moreComom = str(mode(mediums_tecnics))
 
-"""
+    print(inputArtist + " con el MOMA ID "+ constituentID + " tiene " + str(lt.size(filtered_artworks))+ " obras en el museo a su nombre.")
+    print("Hay " + str(count(mediums_tecnics)) + " tecnicas dierentes en su trabajo, la mas usual es: " + moreComom)
+    top = 1
+    for i in lt.iterator(filtered_artworks):
+        if(i[4] == moreComom):
+            print(str(top) + ") Titulo: " + str(i[1])+ ", Fecha de la obra :" + str(i[3]) + ", Medio de la obra: " + str(i[4]) + "Dimensiones:" + str(i[5]))
+            top = top + 1
+
+def printDepartamet(departament, artworks):
+    filtered_artworks = lt.newList()
+    top = 1
+    for artwork in lt.iterator(artworks):
+        if(departament == artwork[9] ):
+            ini = artwork[5].find("(")
+            fin = artwork[5].find(")")
+            if(ini != -1 and fin != -1):
+                fValue = artwork[5][ini+1:fin]
+                if("cm" in fValue):
+                    convertValue(fValue)
+                else:
+                    fValue2 = artwork[5][fin+1:]
+                    fValue3 = fValue2[fValue2.find("(") + 1:fValue2.find(")")]
+                    convertValue(fValue3) 
+            else:
+                print("no tiene")
+            top = top + 1
+            print("El total de obras a transporta es:" + str(top)) 
+    print(top)
+    
+#Drawings & Prints
+def convertValue(text):
+    text1 = text.replace("x","/")
+    text1 = text.replace("x","/")
+    text2 = text1.replace("cm","")
+    num1 = text2[:text2.find("/")]
+    num2 = text2[text2.find("/") +1:]
+    try:
+        return float(num1) * float(num2)
+    except:
+        return convertValue(num1)
+
+def count(catalog):
+    result = []
+    for item in catalog:
+        if item not in result:
+            result.append(item)
+    return len(result)
+
 # Funciones utilizadas para comparar elementos dentro de una lista
 
 # Funciones de ordenamiento
